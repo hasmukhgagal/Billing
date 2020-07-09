@@ -1,0 +1,40 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "begin": "npm run build && node server.js",
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "start:original": "if-env NODE_ENV=production && npm run start:server || npm run start:dev",
+    "server": "nodemon server.js",
+    "client": "cd ../client && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.1.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "handlebars": "^4.7.3",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "material-ui-popup-state": "^1.5.3",
+    "mongoose": "^5.9.2",
+    "nodemailer": "^6.4.4",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "prettier": "^1.19.1",
+    "primereact": "^4.1.2",
+    "validator": "^12.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

@@ -1,0 +1,62 @@
+/* span a {
+  text-decoration: none;
+  color: black;
+}
+
+.tableWidth {
+  width: 50% !important;
+  margin-top: 25px;
+  margin-left: 25%;
+  border: 2px;
+}
+
+.header {
+  background-color: black !important;
+  color: white !important;
+}
+
+.table {
+  margin-top: 10px;
+  border: 1px;
+  border-style: inset;
+}
+
+textarea {
+  resize: none;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.areaWidth {
+  width: 25%;
+}
+
+.button {
+  margin: spacing(1);
+  margin-top: 24px !important;
+  margin-left: 222px !important;
+}
+
+.leftIcon {
+  margin-right: spacing(1);
+}
+
+.iconSmall {
+  font-size: 20;
+} */
+
+.MuiAppBar-colorPrimary {
+  background-color: #fff !important;
+}
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+
+.MuiAppBar-positionFixed {
+  top: 2em !important;
+}
+
+button:focus {
+  background-color: #fff;
+}
