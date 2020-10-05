@@ -5,14 +5,13 @@ import { forgotPassword, verificationCode } from "../../actions/authActions";
 import classnames from "classnames";
 import { withStyles, Grid, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import Navbar from "../layout/Navbar";
 import Loader from "../Loader";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    padding: theme.spacing(4)
-  }
+    padding: theme.spacing(4),
+  },
 });
 
 class ForgotPassword extends Component {
@@ -27,11 +26,9 @@ class ForgotPassword extends Component {
       newPassword: "",
       oldPassword: "",
       errors: {},
-      failed: false
+      failed: false,
     };
   }
-
-  componentWillMount() {}
 
   componentDidMount(nextProps) {
     if (this.props.auth.isAuthenticated) {
@@ -45,16 +42,16 @@ class ForgotPassword extends Component {
     }
     if (nextProps.errors) {
       this.setState({
-        errors: nextProps.errors
+        errors: nextProps.errors,
       });
     }
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { email } = this.state;
     let code;
@@ -63,21 +60,21 @@ class ForgotPassword extends Component {
     }
     const userData = {
       email: email,
-      code: code
+      code: code,
     };
     this.props.verificationCode(userData);
     this.setState({
       verificationCode: code,
-      message: true
+      message: true,
     });
   };
 
-  handleVerify = e => {
+  handleVerify = (e) => {
     if (this.state.verificationCode === parseInt(this.state.code)) {
       this.setState({ confirmCode: true, message: false, email: "" });
     } else {
       this.setState({
-        failed: true
+        failed: true,
       });
     }
   };
@@ -101,13 +98,13 @@ class ForgotPassword extends Component {
     );
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     this.setState({ message: false });
     const { newPassword, email } = this.state;
     const userData = {
       newPassword: newPassword,
-      email: email
+      email: email,
     };
 
     this.props.forgotPassword(userData, this.props.history);
@@ -116,7 +113,7 @@ class ForgotPassword extends Component {
   resetForm = () => {
     this.setState({
       name: "",
-      email: ""
+      email: "",
     });
   };
 
@@ -127,7 +124,7 @@ class ForgotPassword extends Component {
       confirmCode,
       errors,
       email,
-      message
+      message,
     } = this.state;
     const { classes } = this.props;
     const { loading } = this.props.auth;
@@ -136,10 +133,6 @@ class ForgotPassword extends Component {
         <div className="container">
           <div style={{ marginTop: "4rem" }} className="row">
             <div>
-              {/* <Link to="/" className="btn-flat waves-effect">
-                <i className="material-icons left">keyboard_backspace</i> Back
-                to home
-              </Link> */}
               {this.failed()}
               {!verificationCode && (
                 <form noValidate onSubmit={this.handleSubmit}>
@@ -151,7 +144,7 @@ class ForgotPassword extends Component {
                       id="email"
                       type="email"
                       className={classnames("", {
-                        invalid: errors.email || errors.emailnotfound
+                        invalid: errors.email || errors.emailnotfound,
                       })}
                     />
                     <label htmlFor="email">Email</label>
@@ -166,7 +159,7 @@ class ForgotPassword extends Component {
                         width: "150px",
                         borderRadius: "3px",
                         letterSpacing: "1.5px",
-                        marginTop: "1rem"
+                        marginTop: "1rem",
                       }}
                       type="submit"
                       className="btn btn-large waves-effect waves-light hoverable blue accent-3"
@@ -200,7 +193,7 @@ class ForgotPassword extends Component {
                       id="code"
                       type="text"
                       className={classnames("", {
-                        invalid: errors.code
+                        invalid: errors.code,
                       })}
                     />
                     <label htmlFor="email">Code</label>
@@ -213,7 +206,7 @@ class ForgotPassword extends Component {
                         width: "150px",
                         borderRadius: "3px",
                         letterSpacing: "1.5px",
-                        marginTop: "1rem"
+                        marginTop: "1rem",
                       }}
                       type="submit"
                       className="btn btn-large waves-effect waves-light hoverable blue accent-3"
@@ -233,7 +226,7 @@ class ForgotPassword extends Component {
                       id="email"
                       type="email"
                       className={classnames("", {
-                        invalid: errors.email || errors.emailnotfound
+                        invalid: errors.email || errors.emailnotfound,
                       })}
                     />
                     <label htmlFor="email">Email</label>
@@ -259,7 +252,7 @@ class ForgotPassword extends Component {
                         width: "150px",
                         borderRadius: "3px",
                         letterSpacing: "1.5px",
-                        marginTop: "1rem"
+                        marginTop: "1rem",
                       }}
                       type="submit"
                       className="btn btn-large waves-effect waves-light hoverable blue accent-3"
@@ -281,12 +274,12 @@ ForgotPassword.propTypes = {
   forgotPassword: PropTypes.func.isRequired,
   verificationCode: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
 export default withStyles(styles)(

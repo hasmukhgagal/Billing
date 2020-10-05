@@ -4,14 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import {
-  setCurrentUser,
-  logoutUser,
-  changePassword,
-} from "./actions/authActions";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import AddIcon from "@material-ui/icons/Add";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import store from "./store";
@@ -21,7 +16,10 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import forgotPassword from "./components/auth/forgotPassword";
 import ChangePassword from "./components/auth/ChangePassword";
-import Customers from "./components/dashboard/Customers"
+import Customers from "./components/dashboard/Customers";
+import Customer from "./components/dashboard/customer";
+import Invoice from "./components/Invoice/Invoice";
+import CustomerProfile from "./components/dashboard/CustomerProfile";
 
 //Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -51,10 +49,17 @@ class Home extends Component {
     };
   }
 
+  async UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setState({
+      open: true,
+    });
+  }
+
   handleClose = () => {
     this.setState({ open: false });
     this.props.dispatch({ type: "MESSAGE", payload: "" });
   };
+
   render() {
     const { message, auth } = this.props;
     const { open } = this.state;
@@ -67,7 +72,7 @@ class Home extends Component {
               {message ? (
                 <Snackbar
                   open={open}
-                  autoHideDuration={3000}
+                  autoHideDuration={2000}
                   onClose={this.handleClose}
                 >
                   <Alert variant="filled" severity="success">
@@ -77,7 +82,7 @@ class Home extends Component {
               ) : (
                 ""
               )}
-              <Route exact path="/" component={Landing} />
+              <Route exact path="/" component={Landing} props={this.props} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/forgotPassword" component={forgotPassword} />
@@ -86,7 +91,24 @@ class Home extends Component {
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               {/* <Route exact path="/dashboard/customer" component={Dashboard} /> */}
-              <Route exact path="/customers" component={Customers} props={auth}/>
+              <Route
+                exact
+                path="/customers"
+                component={Customers}
+                props={auth}
+              />
+              <Route
+                exact
+                path="/addCustomer"
+                component={Customer}
+                props={this.props}
+              />
+              <Route exact path="/customer/:id" component={CustomerProfile} />
+              <Route
+                exact
+                path="/customer/:id/CreateBill"
+                component={Invoice}
+              />
             </div>
           </Router>
         </Provider>

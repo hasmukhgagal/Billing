@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Snackbar } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
 import { changePassword } from "../../actions/authActions";
 import classnames from "classnames";
-import Navbar from "../layout/Navbar";
 
 window.show = true;
 
@@ -54,7 +51,6 @@ class ChangePassword extends Component {
 
   render() {
     const { errors } = this.state;
-    const { showSuccess } = this.props.auth;
     return (
       <>
         <div className="container">
@@ -125,21 +121,6 @@ class ChangePassword extends Component {
                   </button>
                 </div>
               </form>
-              {/* {this.state.success && (
-                <Snackbar
-                  open={showSuccess}
-                  autoHideDuration={3000}
-                  onClose={this.handleClose}
-                >
-                  <Alert
-                    variant="filled"
-                    onClose={this.handleClose}
-                    severity="success"
-                  >
-                    Password changed successfully!
-                  </Alert>
-                </Snackbar>
-              )} */}
             </div>
           </div>
         </div>
@@ -150,12 +131,10 @@ class ChangePassword extends Component {
 
 ChangePassword.propTypes = {
   changePassword: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
   errors: state.errors
 });
 

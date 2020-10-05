@@ -1,0 +1,105 @@
+@import "Invoice";
+
+.companyName {
+  text-align: center;
+}
+
+.label {
+  width: 105px;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+// .label1 {
+//   margin-left: 365px;
+// }
+
+.inputBox {
+  width: 100px;
+}
+
+.invoiceNo {
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+.customer {
+  width: 100%;
+  margin-top: 50px !important;
+  text-align: left;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+span {
+  width: 90%;
+}
+
+.invoice {
+  max-width: $invoiceMaxWidth;
+  margin: ($rhythm * 2) auto;
+  border: 1px solid $tableBorderColor;
+  padding: 2 * $rhythm;
+  border-radius: $borderRadius;
+  background: $bgColor;
+}
+
+.valueTable {
+  margin: 0 0 0 auto;
+  border: 1px solid $tableBorderColor;
+  border-radius: $borderRadius;
+  overflow: hidden;
+  width: 100%;
+  min-width: $invoiceMaxWidth / 3;
+  max-width: $invoiceMaxWidth / 3;
+  & > .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid $tableBorderColor;
+    &:last-of-type {
+      border-bottom: none;
+    }
+    & > div {
+      padding: ($rhythm/2);
+    }
+    & > .label {
+      @extend %flex-center;
+      justify-content: flex-start;
+      font-weight: bold;
+    }
+  }
+}
+
+.totalContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.saveItem {
+  padding-top: $rhythm;
+  button {
+    @extend %flex-center;
+    cursor: pointer;
+    background: none;
+    padding: $rhythm / 2;
+    border: 1px solid $addColor;
+    color: $addColor;
+    border-radius: $borderRadius;
+    float: right;
+    .saveIcon {
+      color: $addColor;
+      margin-right: $rhythm / 4;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: center;
+  .closing {
+    padding-top: $rhythm;
+  }
+}

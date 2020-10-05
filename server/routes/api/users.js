@@ -1,4 +1,5 @@
 const express = require("express");
+const Validator = require("validator");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 var handlebars = require("handlebars");
@@ -184,6 +185,9 @@ router.post("/send", (req, res, next) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
+  if (!Validator.isLength(req.body.newPassword, { min: 6, max: 30 })) {
+    errors.newPassword = "Password must be at least 6 characters";
+  }
   const email = req.body.email;
 
   User.findOne({ email }).then((user) => {
@@ -205,9 +209,10 @@ router.post("/send", (req, res, next) => {
     var transport = {
       host: "smtp.gmail.com",
       port: 587,
+      secure: false,
       auth: {
-        user: "hasmukhgagal70@gmail.com",
-        pass: "@h141099",
+        user: "billingapp14@gmail.com",
+        pass: "@h12012001",
       },
     };
 
@@ -221,7 +226,7 @@ router.post("/send", (req, res, next) => {
       }
     });
 
-    readHTMLFile("client/public/email.html", function(err, html) {
+    readHTMLFile("../client/public/email.html", function(err, html) {
       var name = req.body.name;
       var email = req.body.email;
       var verificationCode = req.body.code;
@@ -258,4 +263,5 @@ router.post("/send", (req, res, next) => {
 
   // router.get('/veri')
 });
+
 module.exports = router;

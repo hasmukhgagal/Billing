@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
-import Navbar from "../layout/Navbar";
 
 window.show = true;
 
@@ -60,7 +56,7 @@ class Login extends Component {
       <>
         <div className="container">
           <div style={{ marginTop: "4rem" }} className="row">
-            <div  >
+            <div>
               <Link to="/" className="btn-flat waves-effect">
                 <i className="material-icons left">keyboard_backspace</i> Back
                 to home

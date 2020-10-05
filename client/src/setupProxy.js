@@ -1,18 +1,17 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
-module.exports = function(app) {
+const { createProxyMiddleware } = require("http-proxy-middleware");
+module.exports = function (app) {
   app.use(
-    '/api/users/',
+    "/api/users/",
     createProxyMiddleware({
-      target: 'http://localhost:5000/',
+      target: "http://localhost:5000/",
       changeOrigin: true,
     })
   );
   app.use(
-    '/api/users/',
+    "/api/accounts/",
     createProxyMiddleware({
-      target: 'https://billingserver123.herokuapp.com/',
+      target: "http://localhost:5000/",
       changeOrigin: true,
     })
   );
-
 };

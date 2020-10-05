@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import "./style/Loader.css"
+import "./style/Loader.css";
 export default class Loader extends Component {
   render() {
-		return(
-    <>
-			<div class='spinnerClock'>
-				<div class="spinnerClock__clock"></div>
-				<div class="spinnerClock__minHand"></div>
-				<div class="spinnerClock__secHand"></div>
-			</div>
-    </>
-		)
-    }
+    return (
+      <>
+        <div className="spinnerClock">
+          <div className="spinnerClock__clock"></div>
+          <div className="spinnerClock__minHand"></div>
+          <div className="spinnerClock__secHand"></div>
+        </div>
+      </>
+    );
+  }
 }

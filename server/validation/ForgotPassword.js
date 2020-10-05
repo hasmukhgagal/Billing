@@ -13,10 +13,8 @@ module.exports = function validateForgotPasswordInput(data) {
   } else if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
   }
-  if (!Validator.isLength(data.newPassword, { min: 6, max: 30 })) {
-    errors.newPassword = "Password must be at least 6 characters";
-  }
 
+  
   return {
     errors,
     isValid: isEmpty(errors)

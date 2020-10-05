@@ -44,6 +44,7 @@ class Register extends Component {
       email: email,
       password: password,
       password2: password2,
+      customers: {},
     };
     this.props.registerUser(newUser, this.props.history);
   };

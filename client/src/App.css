@@ -60,3 +60,9 @@ textarea {
 button:focus {
   background-color: #fff;
 }
+
+@media (min-width: 600px) {
+  .MuiSnackbar-anchorOriginBottomCenter {
+    top: 20px;
+  }
+}

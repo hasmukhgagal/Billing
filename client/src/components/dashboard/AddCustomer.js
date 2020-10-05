@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+  import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
@@ -21,28 +21,43 @@ class AddCustomer extends Component {
     super(props);
     this.state = {
       value: null,
+      open: false,
     };
-
   }
+
+  handleAddClick = () => {
+    this.setState({
+      open: true,
+    });
+  };
 
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-      <Button
-        onClick={this.props.onClick}
-        color="primary"
-        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-        style={{ borderRadius: '50%', color: 'white', minWidth: '0', height: '56px', width: '56px' }}
-      >
-        <AddIcon />
-      </Button>
+        <Link to="/addCustomer">
+          <Button
+            onClick={this.handleAddClick}
+            color="primary"
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            style={{
+              borderRadius: "50%",
+              color: "white",
+              minWidth: "0",
+              height: "56px",
+              width: "56px",
+            }}
+          >
+            <AddIcon />
+          </Button>
+        </Link>
       </div>
     );
   }
 }
 
-AddCustomer.propTypes = {};
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
 export default withStyles(styles)(connect(mapStateToProps, {})(AddCustomer));
